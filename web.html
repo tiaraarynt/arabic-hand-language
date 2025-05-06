@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARABIC Hand Language</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+</head>        
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="static/images/logo.png" alt="Logo" class="logo" />
+      </div>
+      <div class="nav-links">
+        <a href="#Beranda">Beranda</a>
+        <a href="#Tentang">Tentang</a>
+        <a href="#Deteksi">Deteksi</a>
+      </div>
+    </div>
+  </header>  
+
+  <section id="Beranda"class="hero">
+
+  </section>
+  
+  <section id="Tentang" class="penjelasan">
+    <div class="penjelasan-img">
+      <img src="{{ url_for('static', filename='images/teks.png') }}" alt="Penjelasan Arabic Hand Language">
+    </div>
+  </section>  
+  <section class="about">
+    <div class="card">
+      <p>
+        Arabic Hand Language atau Bahasa Isyarat Arab adalah cara berkomunikasi menggunakan gerakan tangan, ekspresi wajah, dan gerakan tubuh. Bahasa ini digunakan oleh teman-teman dengan hambatan pendengaran dan bicara di negara-negara berbahasa Arab, seperti Mesir, Arab Saudi, dan Uni Emirat Arab.
+          
+        Bahasa ini dirancang untuk membantu menyampaikan kata, huruf, atau kalimat dengan cara yang visual, sehingga bisa dipahami tanpa suara. Setiap huruf hijaiyah memiliki bentuk isyarat tersendiri yang unik dan mudah dikenali, membuat komunikasi tetap lancar meskipun tanpa suara.
+
+        Menariknya, Arabic Hand Language juga menjadi jembatan bagi siapa pun yang ingin belajar huruf-huruf hijaiyah dengan cara yang lebih menyenangkan dan interaktif. Apalagi, buat anak-anak atau pemula, melihat gerakan tangan bisa jadi cara belajar yang seru!
+      </p>
+    </div>
+  </section>
+
+  <section class="penjelasan">
+    <div class="penjelasan-img">
+      <img src="{{ url_for('static', filename='images/teks4.png') }}" alt="Penjelasan Arabic Hand Language">
+    </div>
+  </section>  
+  <section class="tebak" id="tebak">
+      <div class="grid-container">
+        {% for nama, latin, arab, filename in labels %}
+          <div class="grid-item">
+            <img src="{{ url_for('static', filename='images/huruf/' ~ filename) }}" alt="{{ nama }}">
+            <p><strong>{{ nama }}</strong> | {{ latin }} | {{ arab }}</p>
+          </div>
+        {% endfor %}
+      </div>
+  </section>
+  
+  <section id="Deteksi" class="penjelasan">
+    <div class="penjelasan-img">
+      <img src="{{ url_for('static', filename='images/teks3.png') }}" alt="Penjelasan Arabic Hand Language">
+    </div>
+  </section>  
+  <section  class="deteksi">
+    <div class="kamera-container">
+      <div class="video-box">
+        <img src="{{ url_for('video_feed') }}" id="video-stream" alt="kamera" />
+      </div>
+      <div class="buttons">
+        <button id="start">Mulai</button>
+        <button id="stop">Berhenti</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <img src="{{ url_for('static', filename='images/footer.png') }}" alt="Arabic Hand Language" style="max-width: 100%; height: auto;">
+  </footer>
+  
+
+  <script>
+    document.getElementById("start").onclick = () => {
+      document.getElementById("video-stream").src = "{{ url_for('video_feed') }}";
+    };
+    document.getElementById("stop").onclick = () => {
+      document.getElementById("video-stream").src = "";
+    };
+  </script>
+</body>
+</html>
